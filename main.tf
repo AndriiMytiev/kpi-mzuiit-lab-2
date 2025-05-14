@@ -64,9 +64,9 @@ systemctl start docker
 systemctl enable docker
 
 # Запуск Docker-контейнера із вашим застосунком 
-# (припускаємо, що образ з Docker Hub вже зібраний та завантажений за ім'ям 05550/text-styler:latest)
-docker pull 05550/text-styler
-docker run -d -p 80:80 05550/text-styler:latest
+# (припускаємо, що образ з Docker Hub вже зібраний та завантажений за ім'ям andriimytiev/mzuiit-lab2:latest)
+docker pull andriimytiev/mzuiit-lab2
+docker run -d -p 80:80 andriimytiev/mzuiit-lab2:latest
 EOF
 }
 

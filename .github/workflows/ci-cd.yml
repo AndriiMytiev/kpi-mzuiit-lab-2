@@ -32,10 +32,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker Image
-      run: docker build -t 05550/text-styler:latest .
+      run: docker build -t andriimytiev/mzuiit-lab2:latest .
 
     - name: Push Docker Image
-      run: docker push 05550/text-styler:latest
+      run: docker push andriimytiev/mzuiit-lab2:latest
 
   terraform-deploy:
     name: Deploy Infrastructure with Terraform
