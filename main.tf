@@ -46,26 +46,28 @@ resource "aws_instance" "web_instance" {
   ami           = var.ami            # Наприклад, використовуйте актуальний Ubuntu AMI
   instance_type = "t3.micro"
   key_name      = aws_key_pair.lab_key.key_name
-  
+
   # Призначаємо security group
   vpc_security_group_ids = [aws_security_group.web_sg.id]
 
   # User data для автоматичного запуску Docker-образу вашого застосунку
   user_data = <<EOF
 #!/bin/bash
-# Оновлення репозиторіїв
-apt-get update -y
+# Оновлення системи
+yum update -y
 
 # Встановлення Docker
-apt-get install -y docker.io
+yum install -y docker
 
 # Запуск Docker
 systemctl start docker
 systemctl enable docker
 
-# Запуск Docker-контейнера із вашим застосунком 
-# (припускаємо, що образ з Docker Hub вже зібраний та завантажений за ім'ям andriimytiev/mzuiit-lab2:latest)
-docker pull andriimytiev/mzuiit-lab2
+# Дозволити ec2-user запускати docker без sudo (опційно)
+usermod -aG docker ec2-user
+
+# Витягування та запуск контейнера
+docker pull andriimytiev/mzuiit-lab2:latest
 docker run -d -p 80:80 andriimytiev/mzuiit-lab2:latest
 EOF
 }
