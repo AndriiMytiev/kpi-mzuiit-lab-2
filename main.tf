@@ -1,6 +1,6 @@
 # Визначаємо провайдера AWS та регіон. Ключі доступу передаємо через змінні.
 provider "aws" {
-  region     = "us-east-1"
+  region     = "eu-north-1"
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
 }
@@ -44,7 +44,7 @@ resource "aws_security_group" "web_sg" {
 # Ресурс для створення EC2 інстансу
 resource "aws_instance" "web_instance" {
   ami           = var.ami            # Наприклад, використовуйте актуальний Ubuntu AMI
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   key_name      = aws_key_pair.lab_key.key_name
   
   # Призначаємо security group
