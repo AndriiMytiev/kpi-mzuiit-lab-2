@@ -1,0 +1,32 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:  # Дозволяє запуск вручну з інтерфейсу GitHub
+
+jobs:
+  destroy:
+    name: Terraform Destroy (manual)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.7
+
+      - name: Create SSH public key file
+        run: echo "${{ secrets.SSH_PUB_KEY }}" > keyforlab2_2.pub
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Destroy
+        run: |
+          terraform destroy -auto-approve \
+            -var="aws_access_key=${{ secrets.TF_AWS_ACCESS_KEY }}" \
+            -var="aws_secret_key=${{ secrets.TF_AWS_SECRET_KEY }}" \
+            -var="ami=${{ secrets.AMI_ID }}" \
+            -var="ssh_pub_key=keyforlab2_2.pub"
