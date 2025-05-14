@@ -1,7 +1,7 @@
 name: Terraform Destroy
 
 on:
-  workflow_dispatch:  # Дозволяє запуск вручну з інтерфейсу GitHub
+  workflow_dispatch:
 
 jobs:
   destroy:
@@ -11,6 +11,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Download Terraform state
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-state
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3

@@ -74,3 +74,9 @@ jobs:
           -var="aws_secret_key=${{ secrets.TF_AWS_SECRET_KEY }}" \
           -var="ami=${{ secrets.AMI_ID }}" \
           -var="ssh_pub_key=keyforlab2_2.pub"
+
+    - name: Upload Terraform State
+      uses: actions/upload-artifact@v4
+      with:
+        name: terraform-state
+        path: terraform.tfstate
