@@ -79,7 +79,6 @@ docker run -d \
   --interval 30 \
   --cleanup \
   mzuiit-lab2
-
 EOF
 }
 
