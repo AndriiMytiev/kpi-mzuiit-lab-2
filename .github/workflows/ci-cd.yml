@@ -61,7 +61,7 @@ jobs:
     #     terraform plan \
     #       -var="aws_access_key=${{ secrets.TF_AWS_ACCESS_KEY }}" \
     #       -var="aws_secret_key=${{ secrets.TF_AWS_SECRET_KEY }}" \
-    #       -var="ami=ami-0c02fb55956c7d316"
+    #       -var="ami=ami-04f44cc8d189167c2"
 
     # - name: Apply Terraform
     #   run: terraform apply -auto-approve -var="aws_access_key=${{ secrets.TF_AWS_ACCESS_KEY }}" -var="aws_secret_key=${{ secrets.TF_AWS_SECRET_KEY }}"
