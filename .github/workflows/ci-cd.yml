@@ -51,21 +51,6 @@ jobs:
       with:
         terraform_version: 1.5.7
 
-    # - name: Initialize Terraform
-    #   run: terraform init
-
-    # # - name: Plan Terraform
-    #   # run: terraform plan -var="aws_access_key=${{ secrets.TF_AWS_ACCESS_KEY }}" -var="aws_secret_key=${{ secrets.TF_AWS_SECRET_KEY }}"
-    # - name: Terraform Plan
-    #   run: |
-    #     terraform plan \
-    #       -var="aws_access_key=${{ secrets.TF_AWS_ACCESS_KEY }}" \
-    #       -var="aws_secret_key=${{ secrets.TF_AWS_SECRET_KEY }}" \
-    #       -var="ami=ami-00f34bf9aeacdf007"
-
-    # - name: Apply Terraform
-    #   run: terraform apply -auto-approve -var="aws_access_key=${{ secrets.TF_AWS_ACCESS_KEY }}" -var="aws_secret_key=${{ secrets.TF_AWS_SECRET_KEY }}"
-
     - name: Create SSH public key file
       run: echo "${{ secrets.SSH_PUB_KEY }}" > keyforlab2_2.pub
 
