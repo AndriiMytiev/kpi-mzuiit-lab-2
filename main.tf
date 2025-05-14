@@ -43,6 +43,9 @@ resource "aws_security_group" "web_sg" {
 
 # Ресурс для створення EC2 інстансу
 resource "aws_instance" "web_instance" {
+  tags = {
+    Name = "lab2-terraform"   # ← тут задається ім’я інстансу в AWS
+  }
   ami           = var.ami            # Наприклад, використовуйте актуальний Ubuntu AMI
   instance_type = "t3.micro"
   key_name      = aws_key_pair.lab_key.key_name
