@@ -69,6 +69,17 @@ usermod -aG docker ec2-user
 # Витягування та запуск контейнера
 docker pull andriimytiev/mzuiit-lab2:latest
 docker run -d -p 80:80 andriimytiev/mzuiit-lab2:latest
+
+# Запуск Watchtower з --cleanup
+docker run -d \
+  --name watchtower \
+  --restart always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower \
+  --interval 30 \
+  --cleanup \
+  mzuiit-lab2
+
 EOF
 }
 
